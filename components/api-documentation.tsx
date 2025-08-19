@@ -132,6 +132,7 @@ export function ApiDocumentation() {
         </CardContent>
       </Card>
 
+      
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -144,8 +145,8 @@ export function ApiDocumentation() {
             <div>
               <h4 className="font-medium mb-2">JavaScript/Node.js</h4>
               <pre className="bg-muted p-3 rounded text-sm overflow-x-auto">
-                {`// Test Redis connection
-const response = await fetch('/api/test-connection', {
+{`// Test Redis connection
+const response = await fetch('${BASE_URL}/api/test-connection', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
@@ -163,10 +164,10 @@ console.log(result.success ? 'Connected!' : 'Failed:', result.error);`}
             <div>
               <h4 className="font-medium mb-2">Python</h4>
               <pre className="bg-muted p-3 rounded text-sm overflow-x-auto">
-                {`import requests
+{`import requests
 
 # Test Redis connection
-response = requests.post('/api/test-connection', json={
+response = requests.post('${BASE_URL}/api/test-connection', json={
     'host': 'localhost',
     'port': '6379',
     'password': 'your-password'
@@ -180,7 +181,7 @@ print('Connected!' if result['success'] else f"Failed: {result['error']}")`}
             <div>
               <h4 className="font-medium mb-2">cURL</h4>
               <pre className="bg-muted p-3 rounded text-sm overflow-x-auto">
-                {`curl -X POST /api/test-connection \\
+{`curl -X POST ${BASE_URL}/api/test-connection \\
   -H "Content-Type: application/json" \\
   -d '{
     "host": "localhost",
