@@ -147,7 +147,7 @@ export function RedisConnectionTester() {
     setConnectionError("")
 
     try {
-      const response = await fetch("/api/test-connection", {
+      const response = await fetch("/redis-tester/api/test-connection", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(config),
@@ -209,7 +209,7 @@ export function RedisConnectionTester() {
     try {
       const commandList = commands.split("\n").filter((cmd) => cmd.trim())
 
-      const response = await fetch("/api/test-commands", {
+      const response = await fetch("/redis-tester/api/test-commands", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

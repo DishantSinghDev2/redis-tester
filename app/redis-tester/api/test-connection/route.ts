@@ -66,7 +66,6 @@ export async function POST(request: NextRequest) {
       maxRetriesPerRequest: 1,
       retryDelayOnFailover: 100,
       enableReadyCheck: false,
-      maxRetriesPerRequest: 1,
     }
 
     if (password && password.trim()) config.password = password.trim()
@@ -74,7 +73,7 @@ export async function POST(request: NextRequest) {
     if (database && database.trim()) config.db = Number.parseInt(database) || 0
     if (ssl) config.tls = {}
 
-    console.log("[v0] Attempting Redis connection with config:", {
+    console.log("DITools Attempting Redis connection with config:", {
       ...config,
       password: password ? "[REDACTED]" : undefined,
     })
@@ -124,12 +123,12 @@ export async function POST(request: NextRequest) {
         return acc
       }, {})
     } catch (infoError) {
-      console.log("[v0] Could not retrieve server info:", infoError)
+      console.log("DITools Could not retrieve server info:", infoError)
     }
 
     await redis.disconnect()
 
-    console.log("[v0] Redis connection successful")
+    console.log("DITools Redis connection successful")
 
     return NextResponse.json({
       success: true,
@@ -144,7 +143,7 @@ export async function POST(request: NextRequest) {
       },
     })
   } catch (error: any) {
-    console.log("[v0] Redis connection failed:", error.message)
+    console.log("DITools Redis connection failed:", error.message)
 
     let errorMessage = error.message || "Connection failed"
     let errorCode = "UNKNOWN_ERROR"

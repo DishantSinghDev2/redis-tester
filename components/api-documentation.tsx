@@ -3,6 +3,8 @@ import { Badge } from "@/components/ui/badge"
 import { Code, Server, Zap } from "lucide-react"
 
 export function ApiDocumentation() {
+  const BASE_URL = "https://tools.dishis.tech/redis-tester"
+
   return (
     <div className="space-y-6">
       <Card>
@@ -14,6 +16,12 @@ export function ApiDocumentation() {
           <CardDescription>Technical documentation for the Redis testing API</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
+          <div className="border rounded-lg p-4 bg-muted/40">
+            <p className="text-sm font-mono">
+              <strong>Base URL:</strong> {BASE_URL}
+            </p>
+          </div>
+
           <div className="space-y-4">
             <div className="border rounded-lg p-4">
               <div className="flex items-center gap-2 mb-3">

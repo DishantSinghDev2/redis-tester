@@ -177,7 +177,7 @@ export async function POST(request: NextRequest) {
       results,
     })
   } catch (error: any) {
-    console.log("[v0] Command execution failed:", error.message)
+    console.log("DITools Command execution failed:", error.message)
 
     return NextResponse.json(
       {
