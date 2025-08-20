@@ -16,61 +16,66 @@ const siteConfig = {
   twitterHandle: "@dishistech", // Replace with your Twitter handle
 };
 
-export const metadata: Metadata = {
-  // Title template allows child pages to append their own titles.
-  // Example: "Redis Tester | DITools by DishIs Technologies"
-  title: {
-    template: `%s | ${siteConfig.name}`,
-    default: siteConfig.name, // Fallback title for the homepage
-  },
-  description: siteConfig.description,
-  
-  // Keywords help search engines understand your content.
-  keywords: ["developer tools", "online tools", "redis", "json", "formatter", "tester", "cron", "utilities", "DishIs Technologies"],
+export async function generateMetadata({ params }: { params: any }): Promise<Metadata> {
+  const baseUrl = "https://tools.dishis.tech" // <-- replace with your real domain
 
-  authors: [{ name: siteConfig.author, url: "https://dishis.tech" }],
-
-  // Sets the canonical URL to avoid duplicate content issues.
-  metadataBase: new URL(siteConfig.url),
-  alternates: {
-    canonical: '/',
-  },
-
-  // --- Open Graph (for Facebook, LinkedIn, etc.) ---
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteConfig.url,
-    title: siteConfig.name,
+  // Construct canonical from path params (works in app router)
+  const canonical = `${baseUrl}${params?.slug ? `/${params.slug}` : ""}`
+  return {
+    // Title template allows child pages to append their own titles.
+    // Example: "Redis Tester | DITools by DishIs Technologies"
+    title: {
+      template: `%s | ${siteConfig.name}`,
+      default: siteConfig.name, // Fallback title for the homepage
+    },
     description: siteConfig.description,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: `${siteConfig.name} - Online Developer Tools`,
-      },
-    ],
-  },
+    alternates: {
+      canonical,
+    },
 
-  // --- Twitter Card (for Twitter sharing) ---
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: siteConfig.twitterHandle,
-  },
+    // Keywords help search engines understand your content.
+    keywords: ["developer tools", "online tools", "redis", "json", "formatter", "tester", "cron", "utilities", "DishIs Technologies"],
 
-  // --- Additional Meta Tags ---
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-  manifest: `/site.webmanifest`,
+    authors: [{ name: siteConfig.author, url: "https://dishis.tech" }],
+
+    // Sets the canonical URL to avoid duplicate content issues.
+    metadataBase: new URL(siteConfig.url),
+
+    // --- Open Graph (for Facebook, LinkedIn, etc.) ---
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: siteConfig.url,
+      title: siteConfig.name,
+      description: siteConfig.description,
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${siteConfig.name} - Online Developer Tools`,
+        },
+      ],
+    },
+
+    // --- Twitter Card (for Twitter sharing) ---
+    twitter: {
+      card: "summary_large_image",
+      title: siteConfig.name,
+      description: siteConfig.description,
+      images: [siteConfig.ogImage],
+      creator: siteConfig.twitterHandle,
+    },
+
+    // --- Additional Meta Tags ---
+    icons: {
+      icon: "/favicon.ico",
+      shortcut: "/favicon-16x16.png",
+      apple: "/apple-touch-icon.png",
+    },
+    manifest: `/site.webmanifest`,
+  }
 };
-
 
 export default function RootLayout({
   children,
