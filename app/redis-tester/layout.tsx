@@ -9,11 +9,6 @@ export const metadata: Metadata = {
   // Specific keywords for this tool
   keywords: ["redis connection tester", "test redis online", "redis connectivity", "redis troubleshooting", "online redis client", "check redis connection", "redis debug"],
 
-  // Update the canonical URL to this specific page
-  alternates: {
-    canonical: '/redis-connection-tester',
-  },
-
   // --- Overriding Open Graph and Twitter for this specific page ---
   openGraph: {
     title: 'Online Redis Connection Tester | DITools',
